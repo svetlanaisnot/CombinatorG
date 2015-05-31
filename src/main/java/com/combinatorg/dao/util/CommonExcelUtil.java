@@ -1,5 +1,7 @@
 package com.combinatorg.dao.util;
 
+import com.combinatorg.dao.model.test.question.Question;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -29,5 +31,23 @@ public class CommonExcelUtil {
             LOGGER.error(ex.getMessage(), ex);
         }
         return rowIterator;
+    }
+
+    public static Question createQuestion(Cell cell, String sign) {
+        Question question = new Question();
+        String cellValue = cell.getStringCellValue();
+        question.setTitle(createQuestionTitle(cellValue));
+        question.setCategoryId(createQuestionCategory(cellValue, sign));
+        return question;
+    }
+
+    private static String createQuestionTitle(String s) {
+        String[] parts = s.split("\\(");
+        return parts[0].trim();
+    }
+
+    private static int createQuestionCategory(String s, String sign) {
+        String[] parts = s.split("\\(");
+        return Integer.valueOf(parts[1].substring(0, parts[1].indexOf(sign)));
     }
 }

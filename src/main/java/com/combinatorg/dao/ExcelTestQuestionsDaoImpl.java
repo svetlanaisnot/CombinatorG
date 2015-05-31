@@ -1,7 +1,7 @@
 package com.combinatorg.dao;
 
 import com.combinatorg.dao.model.test.question.Question;
-import com.combinatorg.dao.util.PositiveQuestionsExcelConverterUtil;
+import com.combinatorg.dao.util.NegativeQuestionsExcelConverterUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -29,7 +29,14 @@ public class ExcelTestQuestionsDaoImpl implements TestQuestionsDao {
     @Override
     public List<Question> getPositiveQuestions() {
         return createQuestions(
-                getPositiveRows1(), getPositiveRows2()
+                getPositiveRows()
+        );
+    }
+
+    @Override
+    public List<List<Question>> getNegativeQuestions() {
+        return NegativeQuestionsExcelConverterUtil.createQuestions(
+                NegativeQuestionsExcelConverterUtil.getNegativeRows()
         );
     }
 

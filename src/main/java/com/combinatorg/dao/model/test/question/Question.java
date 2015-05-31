@@ -8,7 +8,6 @@ public class Question {
     private String title;
     private boolean isThomas;
     private int categoryId;
-    private boolean isPicked;
 
     public int getId() {
         return id;
@@ -42,14 +41,6 @@ public class Question {
         this.categoryId = categoryId;
     }
 
-    public boolean isPicked() {
-        return isPicked;
-    }
-
-    public void setPicked(boolean isPicked) {
-        this.isPicked = isPicked;
-    }
-
     @Override
     public String toString() {
         return "Question{" +
@@ -57,7 +48,6 @@ public class Question {
                 ", title='" + title + '\'' +
                 ", isThomas=" + isThomas +
                 ", categoryId=" + categoryId +
-                ", isPicked=" + isPicked +
                 '}';
     }
 }

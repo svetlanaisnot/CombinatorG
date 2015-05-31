@@ -12,4 +12,7 @@ public interface TestQuestionsDao {
     List<Question> getThomasTestQuestions();
 
     List<Question> getPositiveQuestions();
+
+    List<List<Question>> getNegativeQuestions();
+
 }
