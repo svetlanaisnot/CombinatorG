@@ -21,20 +21,10 @@ import java.util.List;
 public class TestThomasExcelConverterUtil {
 
     private static final Logger LOGGER =  LoggerFactory.getLogger(TestThomasExcelConverterUtil.class);
-    public static final String EXCEL_FILE_PATH = "./doc/test.xlsx";
     public static final String SHEET_NAME = "тест Томаса";
 
     public static Iterator<Row> getTestThomasRows() {
-        Iterator<Row> rowIterator = null;
-        try (FileInputStream file = new FileInputStream(new File(EXCEL_FILE_PATH))) {
-            XSSFWorkbook workbook = new XSSFWorkbook(file);
-            XSSFSheet sheet = workbook.getSheet(SHEET_NAME);
-            rowIterator = sheet.rowIterator();
-
-        } catch (IOException ex) {
-            LOGGER.error(ex.getMessage(), ex);
-        }
-        return rowIterator;
+        return CommonExcelUtil.getExcelRows(SHEET_NAME);
     }
 
     public static List<Question> convertToQuestions(Iterator<Row> rowIterator) {

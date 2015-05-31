@@ -1,12 +1,14 @@
 package com.combinatorg.dao;
 
 import com.combinatorg.dao.model.test.question.Question;
+import com.combinatorg.dao.util.PositiveQuestionsExcelConverterUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.combinatorg.dao.util.PositiveQuestionsExcelConverterUtil.*;
 import static com.combinatorg.dao.util.TestThomasExcelConverterUtil.*;
 
 /**
@@ -24,6 +26,12 @@ public class ExcelTestQuestionsDaoImpl implements TestQuestionsDao {
         );
     }
 
+    @Override
+    public List<Question> getPositiveQuestions() {
+        return createQuestions(
+                getPositiveRows1(), getPositiveRows2()
+        );
+    }
 
 
 }
