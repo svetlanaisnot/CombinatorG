@@ -9,10 +9,10 @@ import java.util.List;
  */
 public interface TestQuestionsDao {
 
-    List<Statement> getThomasTestQuestions();
+    List<Statement> getThomasTestStatements();
 
-    List<Statement> getPositiveQuestions();
+    List<Statement> getPositiveStatements();
 
-    List<List<Statement>> getNegativeQuestions();
+    List<List<Statement>> getNegativeStatements();
 
 }

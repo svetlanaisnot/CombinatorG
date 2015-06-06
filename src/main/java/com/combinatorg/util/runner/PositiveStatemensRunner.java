@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class PositiveStatemensRunner {
     public static void main(String[] args) {
-        List<Statement> positiveQ = new ExcelTestQuestionsDaoImpl().getPositiveQuestions();
+        List<Statement> positiveQ = new ExcelTestQuestionsDaoImpl().getPositiveStatements();
         for (Statement statement : positiveQ) {
             System.out.println(statement);
         }

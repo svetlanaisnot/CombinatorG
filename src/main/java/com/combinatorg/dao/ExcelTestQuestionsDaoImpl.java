@@ -20,21 +20,21 @@ public class ExcelTestQuestionsDaoImpl implements TestQuestionsDao {
     private static final Logger LOGGER =  LoggerFactory.getLogger(ExcelTestQuestionsDaoImpl.class);
 
     @Override
-    public List<Statement> getThomasTestQuestions() {
+    public List<Statement> getThomasTestStatements() {
         return convertToQuestions(
                 getTestThomasRows()
         );
     }
 
     @Override
-    public List<Statement> getPositiveQuestions() {
+    public List<Statement> getPositiveStatements() {
         return createQuestions(
                 getPositiveRows()
         );
     }
 
     @Override
-    public List<List<Statement>> getNegativeQuestions() {
+    public List<List<Statement>> getNegativeStatements() {
         return NegativeQuestionsExcelConverterUtil.createQuestions(
                 NegativeQuestionsExcelConverterUtil.getNegativeRows()
         );
