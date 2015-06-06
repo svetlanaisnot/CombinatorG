@@ -1,7 +1,7 @@
 package com.combinatorg.util.runner;
 
 import com.combinatorg.dao.ExcelTestQuestionsDaoImpl;
-import com.combinatorg.dao.model.test.question.Question;
+import com.combinatorg.dao.model.test.question.Statement;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ import java.util.List;
 public class TestThomasExcelUploaderTest {
 
     public static void main(String[] args) {
-        List<Question> testThomasQuestions = new ExcelTestQuestionsDaoImpl().getThomasTestQuestions();
-        for (Question question : testThomasQuestions) {
-            System.out.println(question);
+        List<Statement> testThomasStatements = new ExcelTestQuestionsDaoImpl().getThomasTestQuestions();
+        for (Statement statement : testThomasStatements) {
+            System.out.println(statement);
         }
 
     }

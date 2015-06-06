@@ -1,7 +1,7 @@
 package com.combinatorg.util.runner;
 
 import com.combinatorg.dao.ExcelTestQuestionsDaoImpl;
-import com.combinatorg.dao.model.test.question.Question;
+import com.combinatorg.dao.model.test.question.Statement;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import java.util.List;
  */
 public class PositiveStatemensRunner {
     public static void main(String[] args) {
-        List<Question> positiveQ = new ExcelTestQuestionsDaoImpl().getPositiveQuestions();
-        for (Question question : positiveQ) {
-            System.out.println(question);
+        List<Statement> positiveQ = new ExcelTestQuestionsDaoImpl().getPositiveQuestions();
+        for (Statement statement : positiveQ) {
+            System.out.println(statement);
         }
         System.out.println(positiveQ.size());
     }

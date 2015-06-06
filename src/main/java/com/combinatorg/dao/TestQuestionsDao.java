@@ -1,6 +1,6 @@
 package com.combinatorg.dao;
 
-import com.combinatorg.dao.model.test.question.Question;
+import com.combinatorg.dao.model.test.question.Statement;
 
 import java.util.List;
 
@@ -9,10 +9,10 @@ import java.util.List;
  */
 public interface TestQuestionsDao {
 
-    List<Question> getThomasTestQuestions();
+    List<Statement> getThomasTestQuestions();
 
-    List<Question> getPositiveQuestions();
+    List<Statement> getPositiveQuestions();
 
-    List<List<Question>> getNegativeQuestions();
+    List<List<Statement>> getNegativeQuestions();
 
 }

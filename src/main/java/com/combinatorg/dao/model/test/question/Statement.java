@@ -3,7 +3,7 @@ package com.combinatorg.dao.model.test.question;
 /**
  * Created by svetlana on 31/05/15.
  */
-public class Question {
+public class Statement implements Comparable<Statement> {
     private int id;
     private String title;
     private boolean isThomas;
@@ -43,11 +43,16 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question{" +
+        return "Statement{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", isThomas=" + isThomas +
                 ", categoryId=" + categoryId +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Statement o) {
+        return this.categoryId > o.categoryId ? 1 : this.categoryId < o.getCategoryId() ? -1 : 0;
     }
 }

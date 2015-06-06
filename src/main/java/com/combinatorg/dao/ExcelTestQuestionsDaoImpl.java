@@ -1,6 +1,6 @@
 package com.combinatorg.dao;
 
-import com.combinatorg.dao.model.test.question.Question;
+import com.combinatorg.dao.model.test.question.Statement;
 import com.combinatorg.dao.util.NegativeQuestionsExcelConverterUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,21 +20,21 @@ public class ExcelTestQuestionsDaoImpl implements TestQuestionsDao {
     private static final Logger LOGGER =  LoggerFactory.getLogger(ExcelTestQuestionsDaoImpl.class);
 
     @Override
-    public List<Question> getThomasTestQuestions() {
+    public List<Statement> getThomasTestQuestions() {
         return convertToQuestions(
                 getTestThomasRows()
         );
     }
 
     @Override
-    public List<Question> getPositiveQuestions() {
+    public List<Statement> getPositiveQuestions() {
         return createQuestions(
                 getPositiveRows()
         );
     }
 
     @Override
-    public List<List<Question>> getNegativeQuestions() {
+    public List<List<Statement>> getNegativeQuestions() {
         return NegativeQuestionsExcelConverterUtil.createQuestions(
                 NegativeQuestionsExcelConverterUtil.getNegativeRows()
         );

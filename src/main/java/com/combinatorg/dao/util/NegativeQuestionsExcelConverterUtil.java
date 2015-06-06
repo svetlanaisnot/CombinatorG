@@ -1,6 +1,6 @@
 package com.combinatorg.dao.util;
 
-import com.combinatorg.dao.model.test.question.Question;
+import com.combinatorg.dao.model.test.question.Statement;
 import org.apache.poi.ss.usermodel.Row;
 
 import java.util.ArrayList;
@@ -18,14 +18,14 @@ public class NegativeQuestionsExcelConverterUtil {
         return CommonExcelUtil.getExcelRows(SHEET_NAME);
     }
 
-    public static List<List<Question>> createQuestions(Iterator<Row> iter) {
+    public static List<List<Statement>> createQuestions(Iterator<Row> iter) {
         return convertToQuestions(iter);
     }
 
-    private static List<List<Question>> convertToQuestions(Iterator<Row> iter) {
-        List<List<Question>> questions = new ArrayList<>();
-        List<Question> firstPart = new ArrayList<>();
-        List<Question> secondPart = new ArrayList<>();
+    private static List<List<Statement>> convertToQuestions(Iterator<Row> iter) {
+        List<List<Statement>> questions = new ArrayList<>();
+        List<Statement> firstPart = new ArrayList<>();
+        List<Statement> secondPart = new ArrayList<>();
         int rowNumber = 1;
         while (iter.hasNext()) {
             Row row = iter.next();

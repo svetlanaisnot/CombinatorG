@@ -1,16 +1,11 @@
 package com.combinatorg.dao.util;
 
-import com.combinatorg.dao.model.test.question.Question;
+import com.combinatorg.dao.model.test.question.Statement;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -27,23 +22,23 @@ public class TestThomasExcelConverterUtil {
         return CommonExcelUtil.getExcelRows(SHEET_NAME);
     }
 
-    public static List<Question> convertToQuestions(Iterator<Row> rowIterator) {
-        List<Question> questions = new ArrayList<>();
+    public static List<Statement> convertToQuestions(Iterator<Row> rowIterator) {
+        List<Statement> statements = new ArrayList<>();
         while (rowIterator.hasNext()) {
             Row row = rowIterator.next();
-            questions.add(createQuestion(row.getCell(0)));
-            questions.add(createQuestion(row.getCell(1)));
+            statements.add(createQuestion(row.getCell(0)));
+            statements.add(createQuestion(row.getCell(1)));
         }
-        return questions;
+        return statements;
     }
 
-    private static Question createQuestion(Cell cell) {
-        Question question = new Question();
+    private static Statement createQuestion(Cell cell) {
+        Statement statement = new Statement();
         String cellValue = cell.getStringCellValue();
-        question.setTitle(createQuestionTitle(cellValue));
-        question.setCategoryId(createQuestionCategory(cellValue));
-        question.setThomas(true);
-        return question;
+        statement.setTitle(createQuestionTitle(cellValue));
+        statement.setCategoryId(createQuestionCategory(cellValue));
+        statement.setThomas(true);
+        return statement;
     }
 
     private static String createQuestionTitle(String s) {

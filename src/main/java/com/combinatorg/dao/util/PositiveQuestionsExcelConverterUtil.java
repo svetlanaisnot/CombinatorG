@@ -1,6 +1,6 @@
 package com.combinatorg.dao.util;
 
-import com.combinatorg.dao.model.test.question.Question;
+import com.combinatorg.dao.model.test.question.Statement;
 import org.apache.poi.ss.usermodel.Row;
 
 import java.util.ArrayList;
@@ -18,18 +18,18 @@ public class PositiveQuestionsExcelConverterUtil {
         return CommonExcelUtil.getExcelRows(SHEET_NAME);
     }
 
-    public static List<Question> createQuestions(Iterator<Row> iter) {
+    public static List<Statement> createQuestions(Iterator<Row> iter) {
         return convertToQuestions(iter);
     }
 
-    private static List<Question> convertToQuestions(Iterator<Row> iter) {
-        List<Question> questions = new ArrayList<>();
+    private static List<Statement> convertToQuestions(Iterator<Row> iter) {
+        List<Statement> statements = new ArrayList<>();
         while (iter.hasNext()) {
             Row row = iter.next();
-            questions.add(CommonExcelUtil.createQuestion(row.getCell(0), "+"));
-            questions.add(CommonExcelUtil.createQuestion(row.getCell(1), "+"));
+            statements.add(CommonExcelUtil.createQuestion(row.getCell(0), "+"));
+            statements.add(CommonExcelUtil.createQuestion(row.getCell(1), "+"));
         }
-        return questions;
+        return statements;
     }
 
 

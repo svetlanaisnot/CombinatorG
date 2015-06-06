@@ -1,6 +1,6 @@
 package com.combinatorg.dao.util;
 
-import com.combinatorg.dao.model.test.question.Question;
+import com.combinatorg.dao.model.test.question.Statement;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -33,12 +33,12 @@ public class CommonExcelUtil {
         return rowIterator;
     }
 
-    public static Question createQuestion(Cell cell, String sign) {
-        Question question = new Question();
+    public static Statement createQuestion(Cell cell, String sign) {
+        Statement statement = new Statement();
         String cellValue = cell.getStringCellValue();
-        question.setTitle(createQuestionTitle(cellValue));
-        question.setCategoryId(createQuestionCategory(cellValue, sign));
-        return question;
+        statement.setTitle(createQuestionTitle(cellValue));
+        statement.setCategoryId(createQuestionCategory(cellValue, sign));
+        return statement;
     }
 
     private static String createQuestionTitle(String s) {
