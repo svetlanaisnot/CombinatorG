@@ -4,6 +4,7 @@ import com.combinatorg.dao.model.test.question.Statement;
 import org.apache.poi.ss.usermodel.Row;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -31,6 +32,8 @@ public class PositiveQuestionsExcelConverterUtil {
             statements1.add(CommonExcelUtil.createQuestion(row.getCell(0), "+"));
             statements2.add(CommonExcelUtil.createQuestion(row.getCell(1), "+"));
         }
+        Collections.sort(statements1);
+        Collections.sort(statements2);
         result.add(statements1);
         result.add(statements2);
         return result;

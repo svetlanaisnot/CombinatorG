@@ -28,7 +28,8 @@ public class TestService {
         List<TestQuestion> testContent = new ArrayList<>();
 
         testContent.addAll(createThomasTestQuestions(thomasStatements));
-        testContent.addAll(createPositiveNegativeContent(positiveStatements, negativeStatements));
+        testContent.addAll(createQuestions(positiveStatements, true));
+        testContent.addAll(createQuestions(negativeStatements, false));
         //shuffle and return
         Collections.shuffle(testContent);
         return testContent;
@@ -37,53 +38,48 @@ public class TestService {
     private List<TestQuestion> createThomasTestQuestions(List<Statement> statements) {
         List<TestQuestion> result = new ArrayList<>();
          for (int i = 0; i < statements.size() /2; i ++) {
-             result.add(new TestQuestion(statements.get(2*i), statements.get(2 * i + 1), true));
+             result.add(TestQuestion.createTestThomasQuestion(statements.get(2 * i), statements.get(2 * i + 1)));
          }
         return result;
     }
 
-    private List<TestQuestion> createPositiveNegativeContent(List<List<Statement>> positiveStatements, List<List<Statement>> negativeStatements) {
+    private List<TestQuestion> createQuestions(List<List<Statement>> listOfStatements, boolean isPositive) {
         List<TestQuestion> result = new ArrayList<>();
-        int[] seeds = {2, 3, 5, 7, 11};
-        int seedIndex = 0;
-        //process positive statements
-        for (List<Statement> positiveStatement : positiveStatements) {
-            result.addAll(createTestQuestions(positiveStatement, seeds[seedIndex], seeds[(seedIndex + 1) % seeds.length]));
-        }
-
-        seedIndex = 0;
-        //process negative statements using different random seed
-        for (List<Statement> negativeStatement : negativeStatements) {
+        for (int i = 0; i < listOfStatements.size() / 2; i++) {
             result.addAll(
-               createTestQuestions(
-                       negativeStatement, seeds[seedIndex], seeds[(seedIndex + 1) % seeds.length]
-               )
+                    createQuestionListFromPair(listOfStatements.get(2 * i), listOfStatements.get(2 * i + 1), isPositive)
             );
-            seedIndex = (seedIndex + 2) % seeds.length;
+        }
+        return result;
+    }
+
+    private List<TestQuestion> createQuestionListFromPair(List<Statement> list1, List<Statement> list2, boolean isPositive) {
+        List<TestQuestion> result = new ArrayList<>();
+        makeUniqueCategory(list1, list2);
+        for (int i = 0; i < list1.size(); i++) {
+            Statement st1 = list1.get(i);
+            Statement st2 = list2.get(i);
+            result.add(isPositive ? TestQuestion.createPositiveQuestion(st1, st2)
+                                  : TestQuestion.createNegativeQuestion(st1, st2));
         }
 
         return result;
     }
 
-    private List<TestQuestion> createTestQuestions(List<Statement> statements, int seed1, int seed2) {
-        // split statements into 2 lists
-        List<Statement> firstList = new ArrayList<>();
-        List<Statement> secondList = new ArrayList<>();
-        for (int i = 0; i < statements.size() /2; i++) {
-            firstList.add(statements.get(2*i));
-            secondList.add(statements.get(2*i + 1));
+
+
+    private void makeUniqueCategory(List<Statement> list1, List<Statement> list2) {
+        boolean foundDuplicateCategories = true;
+        while (foundDuplicateCategories) {
+            foundDuplicateCategories = false;
+            Collections.shuffle(list1);
+            for (int i = 0; i < list1.size(); i++) {
+                if (list1.get(i).getCategoryId() == list2.get(i).getCategoryId()) {
+                    foundDuplicateCategories = true;
+                    break;
+                }
+            }
         }
 
-        //shuffle in different seed
-        Collections.shuffle(firstList, new Random(seed1));
-        Collections.shuffle(secondList, new Random(seed2));
-
-        //merge the results
-        List<TestQuestion> result = new ArrayList<>();
-        for (int i = 0; i < firstList.size(); i++) {
-            result.add(new TestQuestion(firstList.get(i), secondList.get(i)));
-        }
-
-        return result;
     }
 }

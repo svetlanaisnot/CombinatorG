@@ -11,16 +11,28 @@ public class TestQuestion {
     private Statement statement2;
 
     private boolean isThomas;
+    private boolean isPositive;
 
-    public TestQuestion(Statement statement1, Statement statement2, boolean isThomas) {
+    public TestQuestion() {}
+
+    private TestQuestion(Statement statement1, Statement statement2, boolean isThomas, boolean isPositive) {
         this.id = statement1.getId() + "_" + statement2.getId();
         this.statement1 = statement1;
         this.statement2 = statement2;
         this.isThomas = isThomas;
+        this.isPositive = isPositive;
     }
 
-    public TestQuestion(Statement statement1, Statement statement2) {
-        this(statement1, statement2, false);
+    public static TestQuestion createTestThomasQuestion(Statement st1, Statement st2) {
+        return new TestQuestion(st1, st2, true, false);
+    }
+
+    public static TestQuestion createPositiveQuestion(Statement st1, Statement st2) {
+        return new TestQuestion(st1, st2, false, true);
+    }
+
+    public static TestQuestion createNegativeQuestion(Statement st1, Statement st2) {
+        return new TestQuestion(st1, st2, false, false);
     }
 
     public String getId() {
@@ -53,5 +65,14 @@ public class TestQuestion {
 
     public void setThomas(boolean isThomas) {
         this.isThomas = isThomas;
+    }
+
+
+    public boolean isPositive() {
+        return isPositive;
+    }
+
+    public void setPositive(boolean isPositive) {
+        this.isPositive = isPositive;
     }
 }
