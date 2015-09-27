@@ -28,8 +28,8 @@ public class TestService {
         List<TestQuestion> testContent = new ArrayList<>();
 
         testContent.addAll(createThomasTestQuestions(thomasStatements));
-        testContent.addAll(createQuestions(positiveStatements, true));
-        testContent.addAll(createQuestions(negativeStatements, false));
+        testContent.addAll(createPositiveQuestions(positiveStatements));
+        testContent.addAll(createNegativeQuestions(negativeStatements));
         //shuffle and return
         Collections.shuffle(testContent);
         return testContent;
@@ -41,6 +41,14 @@ public class TestService {
              result.add(TestQuestion.createTestThomasQuestion(statements.get(2 * i), statements.get(2 * i + 1)));
          }
         return result;
+    }
+
+    private List<TestQuestion> createPositiveQuestions(List<List<Statement>> statements) {
+        return createQuestions(statements, true);
+    }
+
+    private List<TestQuestion> createNegativeQuestions(List<List<Statement>> statements) {
+        return createQuestions(statements, false);
     }
 
     private List<TestQuestion> createQuestions(List<List<Statement>> listOfStatements, boolean isPositive) {
