@@ -11,14 +11,19 @@ import java.util.List;
 public class NegativeStatemensRunner {
 
     public static void main(String[] args) {
+        int id = 1;
+        int subcategory = 1;
         List<List<Statement>> qLists = new ExcelTestQuestionsDaoImpl().getNegativeStatements();
         for (List<Statement> qList : qLists) {
+            System.out.println("Subcategory = " + subcategory);
             for (Statement statement : qList) {
+                statement.setId(id);
                 System.out.println(statement);
+                id++;
             }
-            System.out.println("===============Statement list finished ============");
-            System.out.println(qList.size());
+            subcategory++;
         }
-
+        System.out.println("===============Statement list finished ============");
+        System.out.println("Current id = " + id);
     }
 }

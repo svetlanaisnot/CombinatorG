@@ -21,7 +21,7 @@ public class TestService {
     public List<TestQuestion> getTestContent() {
         //Get all statements from database;
         List<Statement> thomasStatements = testQuestionsDao.getThomasTestStatements();
-        List<Statement> positiveStatements = testQuestionsDao.getPositiveStatements();
+        List<List<Statement>> positiveStatements = testQuestionsDao.getPositiveStatements();
         List<List<Statement>> negativeStatements = testQuestionsDao.getNegativeStatements();
 
         //convert all statements into test questions
@@ -42,13 +42,16 @@ public class TestService {
         return result;
     }
 
-    private List<TestQuestion> createPositiveNegativeContent(List<Statement> positiveStatements, List<List<Statement>> negativeStatements) {
+    private List<TestQuestion> createPositiveNegativeContent(List<List<Statement>> positiveStatements, List<List<Statement>> negativeStatements) {
         List<TestQuestion> result = new ArrayList<>();
         int[] seeds = {2, 3, 5, 7, 11};
-        //process positive statements
-        result.addAll(createTestQuestions(positiveStatements, seeds[0], seeds[1]));
-
         int seedIndex = 0;
+        //process positive statements
+        for (List<Statement> positiveStatement : positiveStatements) {
+            result.addAll(createTestQuestions(positiveStatement, seeds[seedIndex], seeds[(seedIndex + 1) % seeds.length]));
+        }
+
+        seedIndex = 0;
         //process negative statements using different random seed
         for (List<Statement> negativeStatement : negativeStatements) {
             result.addAll(

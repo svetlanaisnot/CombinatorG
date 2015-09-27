@@ -11,7 +11,7 @@ public interface TestQuestionsDao {
 
     List<Statement> getThomasTestStatements();
 
-    List<Statement> getPositiveStatements();
+    List<List<Statement>> getPositiveStatements();
 
     List<List<Statement>> getNegativeStatements();
 

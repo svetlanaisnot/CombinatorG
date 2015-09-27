@@ -10,10 +10,19 @@ import java.util.List;
  */
 public class PositiveStatemensRunner {
     public static void main(String[] args) {
-        List<Statement> positiveQ = new ExcelTestQuestionsDaoImpl().getPositiveStatements();
-        for (Statement statement : positiveQ) {
-            System.out.println(statement);
+        int id = 1;
+        int subcategory = 1;
+        List<List<Statement>> positiveQ = new ExcelTestQuestionsDaoImpl().getPositiveStatements();
+        for (List<Statement> statementList : positiveQ) {
+            System.out.println("Subcategory = " + subcategory);
+            for (Statement statement : statementList) {
+                statement.setId(id);
+                System.out.println(statement);
+                id++;
+            }
+            subcategory++;
         }
-        System.out.println(positiveQ.size());
+        System.out.println("===============Statement list finished ============");
+        System.out.println("Current id = " + id);
     }
 }

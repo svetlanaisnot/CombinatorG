@@ -12,24 +12,28 @@ import java.util.List;
  */
 public class PositiveQuestionsExcelConverterUtil {
 
-    public static final String SHEET_NAME = "+1";
 
-    public static Iterator<Row> getPositiveRows() {
-        return CommonExcelUtil.getExcelRows(SHEET_NAME);
+
+    public static Iterator<Row> getPositiveRows(String sheetName) {
+        return CommonExcelUtil.getExcelRows(sheetName);
     }
 
-    public static List<Statement> createQuestions(Iterator<Row> iter) {
+    public static List<List<Statement>> createQuestions(Iterator<Row> iter) {
         return convertToQuestions(iter);
     }
 
-    private static List<Statement> convertToQuestions(Iterator<Row> iter) {
-        List<Statement> statements = new ArrayList<>();
+    private static List<List<Statement>> convertToQuestions(Iterator<Row> iter) {
+        List<List<Statement>> result = new ArrayList<>();
+        List<Statement> statements1 = new ArrayList<>();
+        List<Statement> statements2 = new ArrayList<>();
         while (iter.hasNext()) {
             Row row = iter.next();
-            statements.add(CommonExcelUtil.createQuestion(row.getCell(0), "+"));
-            statements.add(CommonExcelUtil.createQuestion(row.getCell(1), "+"));
+            statements1.add(CommonExcelUtil.createQuestion(row.getCell(0), "+"));
+            statements2.add(CommonExcelUtil.createQuestion(row.getCell(1), "+"));
         }
-        return statements;
+        result.add(statements1);
+        result.add(statements2);
+        return result;
     }
 
 

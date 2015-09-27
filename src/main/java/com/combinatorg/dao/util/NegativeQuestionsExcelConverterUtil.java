@@ -12,34 +12,47 @@ import java.util.List;
  */
 public class NegativeQuestionsExcelConverterUtil {
 
-    public static final String SHEET_NAME = "-1";
 
-    public static Iterator<Row> getNegativeRows() {
-        return CommonExcelUtil.getExcelRows(SHEET_NAME);
+    public static Iterator<Row> getNegativeRows(String sheetName) {
+        return CommonExcelUtil.getExcelRows(sheetName);
     }
 
-    public static List<List<Statement>> createQuestions(Iterator<Row> iter) {
-        return convertToQuestions(iter);
-    }
-
-    private static List<List<Statement>> convertToQuestions(Iterator<Row> iter) {
+    public static List<List<Statement>> convertToNegativeStatement1(Iterator<Row> iter) {
         List<List<Statement>> questions = new ArrayList<>();
-        List<Statement> firstPart = new ArrayList<>();
-        List<Statement> secondPart = new ArrayList<>();
+        List<Statement> statements1 = new ArrayList<>();
+        List<Statement> statements2 = new ArrayList<>();
+        List<Statement> statements3 = new ArrayList<>();
+        List<Statement> statements4 = new ArrayList<>();
         int rowNumber = 1;
         while (iter.hasNext()) {
             Row row = iter.next();
             if (rowNumber <= 13) {
-                firstPart.add(CommonExcelUtil.createQuestion(row.getCell(0), "-"));
-                firstPart.add(CommonExcelUtil.createQuestion(row.getCell(1), "-"));
+                statements1.add(CommonExcelUtil.createQuestion(row.getCell(0), "-"));
+                statements2.add(CommonExcelUtil.createQuestion(row.getCell(1), "-"));
             } else {
-                secondPart.add(CommonExcelUtil.createQuestion(row.getCell(0), "-"));
-                secondPart.add(CommonExcelUtil.createQuestion(row.getCell(1), "-"));
+                statements3.add(CommonExcelUtil.createQuestion(row.getCell(0), "-"));
+                statements4.add(CommonExcelUtil.createQuestion(row.getCell(1), "-"));
             }
             rowNumber++;
         }
-        questions.add(firstPart);
-        questions.add(secondPart);
+        questions.add(statements1);
+        questions.add(statements2);
+        questions.add(statements3);
+        questions.add(statements4);
         return questions;
+    }
+
+    public static List<List<Statement>> convertToNegativeStatement2(Iterator<Row> iter) {
+        List<List<Statement>> result = new ArrayList<>();
+        List<Statement> statements1 = new ArrayList<>();
+        List<Statement> statements2 = new ArrayList<>();
+        while (iter.hasNext()) {
+            Row row = iter.next();
+            statements1.add(CommonExcelUtil.createQuestion(row.getCell(0), "-"));
+            statements2.add(CommonExcelUtil.createQuestion(row.getCell(1), "-"));
+        }
+        result.add(statements1);
+        result.add(statements2);
+        return result;
     }
 }
