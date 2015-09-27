@@ -11,7 +11,7 @@ import java.util.List;
 public class NegativeStatemensRunner {
 
     public static void main(String[] args) {
-        List<List<Statement>> qLists = new ExcelTestQuestionsDaoImpl().getNegativeQuestions();
+        List<List<Statement>> qLists = new ExcelTestQuestionsDaoImpl().getNegativeStatements();
         for (List<Statement> qList : qLists) {
             for (Statement statement : qList) {
                 System.out.println(statement);
