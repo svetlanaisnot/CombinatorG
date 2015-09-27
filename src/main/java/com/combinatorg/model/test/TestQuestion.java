@@ -23,4 +23,35 @@ public class TestQuestion {
         this(statement1, statement2, false);
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Statement getStatement1() {
+        return statement1;
+    }
+
+    public void setStatement1(Statement statement1) {
+        this.statement1 = statement1;
+    }
+
+    public Statement getStatement2() {
+        return statement2;
+    }
+
+    public void setStatement2(Statement statement2) {
+        this.statement2 = statement2;
+    }
+
+    public boolean isThomas() {
+        return isThomas;
+    }
+
+    public void setThomas(boolean isThomas) {
+        this.isThomas = isThomas;
+    }
 }
